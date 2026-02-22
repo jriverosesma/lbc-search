@@ -1,3 +1,4 @@
+[![License](https://img.shields.io/github/license/jriverosesma/lbc-search?style=for-the-badge)](https://github.com/jriverosesma/lbc-search/blob/main/LICENSE)
 # LBC Search
 
 ## Overview
