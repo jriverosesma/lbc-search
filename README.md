@@ -52,6 +52,8 @@ Output result:
 ]
 ```
 
+**Important tip** ⚠️: Avoid excessive requests to avoid being blocked by leboncoin. 
+
 ## Development (using Pixi as package manager)
 
 ```bash
