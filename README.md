@@ -15,14 +15,14 @@ pip install git+https://github.com/jriverosesma/lbc-search.git
 ## Usage
 
 ```bash
-lbc --url <search-url> # Copy URL from browser
+lbc --url '<search-url>' # Copy URL from browser and don't forget putting it between quotes
 lbc --help # Show all options
 ```
 
 Example:
 
 ```bash
-lbc --url "https://www.leboncoin.fr/recherche?category=20&text=aspirateur"
+lbc --url 'https://www.leboncoin.fr/recherche?category=20&text=aspirateur'
 ```
 
 Output result:
