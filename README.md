@@ -1,3 +1,4 @@
+![Version](https://img.shields.io/badge/version-0.1.0-blue?style=for-the-badge)
 [![License](https://img.shields.io/github/license/jriverosesma/lbc-search?style=for-the-badge)](https://github.com/jriverosesma/lbc-search/blob/main/LICENSE)
 # LBC Search
 
