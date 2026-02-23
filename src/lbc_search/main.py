@@ -1,10 +1,14 @@
 import argparse
-from dataclasses import dataclass
 import json
+import logging
+from dataclasses import dataclass
 from pathlib import Path
 
-from dataclasses_json import dataclass_json
 import lbc
+from dataclasses_json import dataclass_json
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 DEFAULT_OUT = Path("lbc_results.json")
 
@@ -42,7 +46,11 @@ def main() -> None:
         "-s",
         type=str,
         default="relevance",
-        help=f"Sorting type. Available values are: {[member.name.lower() for member in lbc.enums.Sort]} (default: 'relevance').",
+        help=(
+            f"Sorting type. Available values are: "
+            f"{[member.name.lower() for member in lbc.enums.Sort]} "
+            f"(default: 'relevance')."
+        ),
     )
     parser.add_argument(
         "--out",
@@ -73,7 +81,7 @@ def search_and_export(url: str, limit: int, sort: lbc.enums.Sort, out: Path) -> 
     for page in range(1, nb_pages + 1):
         if add_count >= limit:
             break
-        search = client.search(url=url, page=page)
+        search = client.search(url=url, page=page, sort=sort)
         for add in search.ads:
             results.append(
                 AddRelevantFields(
@@ -84,7 +92,7 @@ def search_and_export(url: str, limit: int, sort: lbc.enums.Sort, out: Path) -> 
                     user_score=add.user.feedback.score,
                     nb_user_evaluations=add.user.feedback.received_count,
                     url=add.url,
-                ).to_dict()
+                ).to_dict(),
             )
             add_count += 1
             if add_count >= limit:
@@ -95,7 +103,7 @@ def search_and_export(url: str, limit: int, sort: lbc.enums.Sort, out: Path) -> 
         json.dump(results, f, indent=4, ensure_ascii=False, default=str)
 
     # Display results summary
-    print(f"Successfully retrieved and exported {len(results)} results to {out}")
+    logger.info("Successfully retrieved and exported %d results to %s", len(results), out)
 
 
 if __name__ == "__main__":
