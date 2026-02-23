@@ -2,7 +2,7 @@
 name = "lbc-search"
 version = "0.1.0"
 requires-python = ">=3.11"
-authors = [{ name = "jriverosesma", email = "jriverosesma@gmail.com" }]
+authors = [{ name = "Juan Rivero Sesma", email = "jriverosesma@gmail.com" }]
 
 dependencies = [
   "dataclasses-json>=0.6.7,<0.7",
@@ -28,13 +28,67 @@ python = ">=3.11,<3.13"
 "lbc-search" = { path = ".", editable = true }
 
 [tool.pixi.feature.dev.dependencies]
-black = "*"
-isort = "*"
-pre-commit = "*"
-ruff = "*"
+bumpver = ">=2025.1131,<2026"
+pre-commit = ">=4.5.1,<5"
+ruff = ">=0.15.2,<0.16"
 
 [tool.pixi.environments]
 default = { features = ["dev"] }
 
 [tool.pixi.tasks]
 setup = "pre-commit install"
+
+[tool.bumpver]
+current_version = "0.1.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit          = false
+tag             = false
+push            = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    '^current_version = "{version}"$',
+    '^version = "{version}"$',
+]
+"src/lbc_search/__init__.py" = [
+    '^__version__ = "{version}"$',
+]
+"README.md" = [
+    'https://img.shields.io/badge/version-{version}-blue'
+]
+
+[tool.ruff]
+line-length = 120
+preview = true
+
+[tool.ruff.format]
+preview = true
+quote-style = "double"
+docstring-code-format = true
+docstring-code-line-length = 120
+
+[tool.ruff.lint]
+preview = true
+select = [
+  "A", "ARG", "ASYNC", "B", "BLE", "C4", "COM", "DTZ", "E", "EM",
+  "EXE", "F", "FA", "FBT", "FLY", "FURB", "G", "I", "ICN", "INP",
+  "INT", "ISC", "LOG", "N", "PERF", "PGH", "PIE", "PLC", "PLE",
+  "PLR", "PLW", "PT", "PYI", "RET", "RSE", "RUF", "S", "SIM",
+  "SLF", "SLOT", "T10", "T20", "TC", "TD", "TID", "TRY", "UP",
+  "W", "YTT"
+]
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 120
+
+[tool.ruff.lint.per-file-ignores]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.isort]
+known-first-party = ["lbc_search"]
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false

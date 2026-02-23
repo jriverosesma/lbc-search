@@ -1,3 +1,4 @@
+![Version](https://img.shields.io/badge/version-0.1.0-blue?style=for-the-badge)
 [![License](https://img.shields.io/github/license/jriverosesma/lbc-search?style=for-the-badge)](https://github.com/jriverosesma/lbc-search/blob/main/LICENSE)
 # LBC Search
 
@@ -14,14 +15,14 @@ pip install git+https://github.com/jriverosesma/lbc-search.git
 ## Usage
 
 ```bash
-lbc --url <search-url> # Copy URL from browser
+lbc --url '<search-url>' # Copy URL from browser and don't forget putting it between quotes
 lbc --help # Show all options
 ```
 
 Example:
 
 ```bash
-lbc --url "https://www.leboncoin.fr/recherche?category=20&text=aspirateur"
+lbc --url 'https://www.leboncoin.fr/recherche?category=20&text=aspirateur'
 ```
 
 Output result:
@@ -50,6 +51,8 @@ Output result:
     ...
 ]
 ```
+
+**Important tip** ⚠️: Avoid excessive requests to avoid being blocked by leboncoin. 
 
 ## Development (using Pixi as package manager)
 
